@@ -1,23 +1,29 @@
-# Quote API
+# Forge API
 
-A small HTTP Quote API built with Python and [FastAPI](https://fastapi.tiangolo.com/).
+A small HTTP API built with Python and [FastAPI](https://fastapi.tiangolo.com/). It serves random quotes and supports user profiles with uploadable profile photos.
 
 ## Endpoints
 
-| Method | Path      | Description                       |
-|--------|-----------|-----------------------------------|
-| GET    | `/health` | Liveness check + quote count      |
-| GET    | `/quote`  | Returns a random quote            |
+| Method | Path                    | Description                              |
+|--------|-------------------------|------------------------------------------|
+| GET    | `/health`               | Liveness check + quote/user counts       |
+| GET    | `/quote`                | Returns a random quote                   |
+| POST   | `/users`                | Create a user profile                    |
+| GET    | `/users/{id}`           | Fetch a user profile                     |
+| POST   | `/users/{id}/photo`     | Upload or replace a profile photo        |
+| GET    | `/users/{id}/photo`     | Download the stored profile photo        |
 
 Example responses:
 
 ```json
-// GET /health
-{"status": "ok", "quotes": 10}
+// POST /users {"name": "Ada Lovelace"}
+{"id": "…", "name": "Ada Lovelace", "photo_url": null}
 
-// GET /quote
-{"text": "Talk is cheap. Show me the code.", "author": "Linus Torvalds"}
+// POST /users/{id}/photo (multipart file field: file)
+{"id": "…", "name": "Ada Lovelace", "photo_url": "/users/{id}/photo"}
 ```
+
+Supported photo types: JPEG, PNG, WebP, GIF.
 
 ## Requirements
 
@@ -55,8 +61,15 @@ pytest
 app/
   main.py      # FastAPI app + routes
   quotes.py    # quote data and random selection
+  users.py     # user profiles + photo storage
 tests/
-  test_api.py  # pytest suite
-setup.sh       # environment setup (Python 3.10+)
+  test_api.py    # quote/health tests
+  test_users.py  # profile photo tests
+setup.sh         # environment setup (Python 3.10+)
 requirements.txt
+uploads/           # created at runtime for profile photos (gitignored)
 ```
+
+## Repository
+
+Canonical product repo: [github.com/al-kutub/a-forgeb](https://github.com/al-kutub/a-forgeb)
