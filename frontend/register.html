@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register — Forge</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <h1>Create account</h1>
+      <p class="subtitle">Join Forge and add your profile photo.</p>
+      <div id="error" class="error" hidden></div>
+      <form id="register-form">
+        <label for="display_name">Display name</label>
+        <input
+          id="display_name"
+          name="display_name"
+          type="text"
+          required
+          maxlength="100"
+          autocomplete="name"
+        />
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required autocomplete="email" />
+
+        <label for="password">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          required
+          autocomplete="new-password"
+          minlength="8"
+        />
+
+        <button type="submit" id="submit-btn">Create account</button>
+      </form>
+      <p class="footer-link">
+        Already registered? <a href="/login.html">Sign in</a>
+      </p>
+    </main>
+    <script>
+      redirectIfAuthed();
+
+      const form = document.getElementById("register-form");
+      const errorEl = document.getElementById("error");
+      const submitBtn = document.getElementById("submit-btn");
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        showError(errorEl, "");
+        submitBtn.disabled = true;
+
+        const displayName = document.getElementById("display_name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+
+        const result = await registerUser(email, password, displayName);
+        if (!result.ok) {
+          const detail = result.data?.detail;
+          showError(errorEl, typeof detail === "string" ? detail : "Registration failed");
+          submitBtn.disabled = false;
+          return;
+        }
+
+        setToken(result.data.access_token);
+        window.location.href = "/profile.html";
+      });
+    </script>
+  </body>
+</html>

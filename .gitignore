@@ -3,4 +3,6 @@ __pycache__/
 *.pyc
 .pytest_cache/
 uploads/
+data/
+users.db
 .DS_Store

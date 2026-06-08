@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login — Forge</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <h1>Welcome back</h1>
+      <p class="subtitle">Sign in to manage your Forge profile.</p>
+      <div id="error" class="error" hidden></div>
+      <form id="login-form">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required autocomplete="email" />
+
+        <label for="password">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          required
+          autocomplete="current-password"
+          minlength="8"
+        />
+
+        <button type="submit" id="submit-btn">Sign in</button>
+      </form>
+      <p class="footer-link">
+        New here? <a href="/register.html">Create an account</a>
+      </p>
+    </main>
+    <script>
+      redirectIfAuthed();
+
+      const form = document.getElementById("login-form");
+      const errorEl = document.getElementById("error");
+      const submitBtn = document.getElementById("submit-btn");
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        showError(errorEl, "");
+        submitBtn.disabled = true;
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+
+        const result = await loginUser(email, password);
+        if (!result.ok) {
+          const detail = result.data?.detail;
+          showError(errorEl, typeof detail === "string" ? detail : "Login failed");
+          submitBtn.disabled = false;
+          return;
+        }
+
+        setToken(result.data.access_token);
+        window.location.href = "/profile.html";
+      });
+    </script>
+  </body>
+</html>

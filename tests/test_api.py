@@ -1,14 +1,9 @@
 """Tests for the Quote API."""
 
-from fastapi.testclient import TestClient
-
-from app.main import app
 from app.quotes import QUOTES
 
-client = TestClient(app)
 
-
-def test_health():
+def test_health(client):
     resp = client.get("/health")
     assert resp.status_code == 200
     body = resp.json()
@@ -16,7 +11,7 @@ def test_health():
     assert body["quotes"] == len(QUOTES)
 
 
-def test_quote_shape():
+def test_quote_shape(client):
     resp = client.get("/quote")
     assert resp.status_code == 200
     body = resp.json()
@@ -25,7 +20,7 @@ def test_quote_shape():
     assert isinstance(body["author"], str) and body["author"]
 
 
-def test_quote_is_known():
+def test_quote_is_known(client):
     resp = client.get("/quote")
     body = resp.json()
     assert body in QUOTES

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile — Forge</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <h1>Your profile</h1>
+      <p class="subtitle">Manage your avatar and account.</p>
+      <div id="error" class="error" hidden></div>
+      <div id="success" class="success" hidden></div>
+
+      <section class="profile-header">
+        <img id="avatar" class="avatar" alt="Profile avatar" />
+        <div class="profile-meta">
+          <h2 id="display-name">—</h2>
+          <p id="email">—</p>
+        </div>
+      </section>
+
+      <div class="actions">
+        <label for="avatar-file">Upload new avatar (JPEG, PNG, WebP — max 2 MB)</label>
+        <input id="avatar-file" type="file" accept="image/jpeg,image/png,image/webp" />
+        <button type="button" id="upload-btn">Upload avatar</button>
+        <button type="button" id="delete-btn" class="danger">Remove avatar</button>
+        <button type="button" id="logout-btn" class="secondary">Sign out</button>
+      </div>
+    </main>
+    <script>
+      if (!requireAuth()) {
+        throw new Error("redirecting");
+      }
+
+      const errorEl = document.getElementById("error");
+      const successEl = document.getElementById("success");
+      const avatarEl = document.getElementById("avatar");
+      const displayNameEl = document.getElementById("display-name");
+      const emailEl = document.getElementById("email");
+      const fileInput = document.getElementById("avatar-file");
+      const uploadBtn = document.getElementById("upload-btn");
+      const deleteBtn = document.getElementById("delete-btn");
+      const logoutBtn = document.getElementById("logout-btn");
+
+      let currentUser = null;
+
+      function showSuccess(message) {
+        successEl.textContent = message || "";
+        successEl.hidden = !message;
+      }
+
+      function renderUser(user) {
+        currentUser = user;
+        displayNameEl.textContent = user.display_name;
+        emailEl.textContent = user.email;
+        avatarEl.src = avatarSrc(user);
+      }
+
+      async function loadProfile() {
+        const result = await fetchMe();
+        if (!result.ok) {
+          clearToken();
+          window.location.href = "/login.html";
+          return;
+        }
+        renderUser(result.data);
+      }
+
+      uploadBtn.addEventListener("click", async () => {
+        showError(errorEl, "");
+        showSuccess("");
+        const file = fileInput.files[0];
+        if (!file) {
+          showError(errorEl, "Choose an image file first.");
+          return;
+        }
+
+        uploadBtn.disabled = true;
+        const result = await uploadAvatar(file);
+        uploadBtn.disabled = false;
+
+        if (!result.ok) {
+          const detail = result.data?.detail;
+          showError(errorEl, typeof detail === "string" ? detail : "Upload failed");
+          return;
+        }
+
+        fileInput.value = "";
+        renderUser(result.data);
+        showSuccess("Avatar updated.");
+      });
+
+      deleteBtn.addEventListener("click", async () => {
+        showError(errorEl, "");
+        showSuccess("");
+        deleteBtn.disabled = true;
+
+        const result = await deleteAvatar();
+        deleteBtn.disabled = false;
+
+        if (!result.ok && result.status !== 204) {
+          showError(errorEl, "Could not remove avatar.");
+          return;
+        }
+
+        if (currentUser) {
+          renderUser({ ...currentUser, avatar_url: null });
+        }
+        showSuccess("Avatar removed.");
+      });
+
+      logoutBtn.addEventListener("click", () => {
+        clearToken();
+        window.location.href = "/login.html";
+      });
+
+      loadProfile();
+    </script>
+  </body>
+</html>
