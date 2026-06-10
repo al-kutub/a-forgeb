@@ -8,6 +8,8 @@ importers:
 
   .: {}
 
+  packages/ci-triage: {}
+
   packages/shared:
     devDependencies:
       typescript:

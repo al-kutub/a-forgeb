@@ -7,7 +7,8 @@
   "include": [
     "fixtures/**/*.ts",
     "routes/flake-radar/**/*.ts",
-    "services/test-intelligence/**/*.ts"
+    "services/test-intelligence/**/*.ts",
+    "services/ci-triage/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
