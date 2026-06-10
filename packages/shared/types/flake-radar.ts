@@ -154,6 +154,8 @@ export interface PredictiveSelectionInput {
   prNumber?: number;
   changedPaths: string[];
   availableTestIds: string[];
+  /** Optional map from test id to suite file path for path-based matching. */
+  suitePathsByTestId?: Record<string, string>;
   historicalDurationsMs: Record<string, number>;
   requestedAt: string;
 }

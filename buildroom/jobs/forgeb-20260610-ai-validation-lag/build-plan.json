@@ -14,6 +14,20 @@
         "packages/shared/types/flake-radar.ts"
       ],
       "commands": ["pnpm -r typecheck"]
+    },
+    {
+      "id": "backend-services",
+      "description": "Implement test-intelligence services, API routes, and unit tests",
+      "files": [
+        "server/services/test-intelligence/flake-scorer.ts",
+        "server/services/test-intelligence/quarantine-policy.ts",
+        "server/services/test-intelligence/predictive-selection.ts",
+        "server/routes/flake-radar/index.ts",
+        "server/fixtures/run-history.ts",
+        "server/package.json",
+        "server/tsconfig.json"
+      ],
+      "commands": ["pnpm -r typecheck", "pnpm test --filter flake-radar"]
     }
   ]
 }

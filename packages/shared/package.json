@@ -10,7 +10,8 @@
     "./fixtures/ci-triage": "./fixtures/ci-triage/index.ts"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "pnpm --filter @forgeb/flake-radar-server test"
   },
   "devDependencies": {
     "typescript": "^5.8.3"

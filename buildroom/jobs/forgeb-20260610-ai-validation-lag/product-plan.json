@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "job_id": "forgeb-20260610-ai-validation-lag",
+  "title": "Flake Radar — predictive test selection and quarantine for AI-accelerated pipelines",
+  "created_at": "2026-06-10T16:16:10Z",
+  "allowed_paths": [
+    "server/routes/flake-radar/",
+    "server/services/test-intelligence/",
+    "ui/components/flake-radar/",
+    "packages/shared/types/flake-radar.ts",
+    "buildroom/jobs/forgeb-20260610-ai-validation-lag/"
+  ],
+  "planned_files": [
+    "server/routes/flake-radar/index.ts",
+    "server/services/test-intelligence/flake-scorer.ts",
+    "server/services/test-intelligence/quarantine-policy.ts",
+    "server/services/test-intelligence/predictive-selection.ts",
+    "ui/components/flake-radar/FlakeHeatmap.tsx",
+    "ui/components/flake-radar/QuarantineQueue.tsx",
+    "packages/shared/types/flake-radar.ts"
+  ],
+  "non_goals": [
+    "Replacing Forge CI runners or vendor-specific executor internals",
+    "Auto-merging or bypassing required checks without operator approval",
+    "Full ML model training pipeline or custom GPU infrastructure",
+    "Non-Forge SCM providers in v1"
+  ],
+  "verification_commands": [
+    "hermes buildroom validate --job forgeb-20260610-ai-validation-lag",
+    "pnpm -r typecheck",
+    "pnpm test --filter flake-radar"
+  ],
+  "acceptance_checks": [
+    "Flake scorer ranks tests by instability using recent run history and surfaces top offenders per repo",
+    "Quarantine policy auto-marks chronic flakes and excludes them from blocking status with operator-visible audit trail",
+    "Predictive selection recommends a minimal test subset for PRs with estimated time savings vs full suite",
+    "Dashboard shows rerun multiplier and queue-wait ratio alongside MTTR trend line"
+  ],
+  "protected_surfaces": [
+    "config.yaml",
+    ".env",
+    "cron/jobs.json",
+    "buildroom/schemas/"
+  ],
+  "risk_band": "medium",
+  "summary": "Give Forge teams a pipeline-native flake radar that scores test instability, auto-quarantines chronic offenders, and recommends predictive test subsets so AI-driven PR volume does not inflate median time-to-green beyond the current 72-minute baseline."
+}

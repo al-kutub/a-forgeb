@@ -1,4 +1,6 @@
 packages:
   - "packages/*"
   - "server"
-  - "ui"
+
+allowBuilds:
+  esbuild: true

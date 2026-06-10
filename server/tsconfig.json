@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "types": ["node"]
+  },
+  "include": [
+    "fixtures/**/*.ts",
+    "routes/flake-radar/**/*.ts",
+    "services/test-intelligence/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
+}
