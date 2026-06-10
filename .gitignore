@@ -6,3 +6,4 @@ uploads/
 data/
 users.db
 .DS_Store
+node_modules/

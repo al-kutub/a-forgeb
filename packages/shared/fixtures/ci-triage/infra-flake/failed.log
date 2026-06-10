@@ -1,0 +1,25 @@
+2026-06-10T15:18:48Z ##[group]Run actions/checkout@v4
+2026-06-10T15:18:49Z Syncing repository: al-kutub/a-forgeb
+2026-06-10T15:18:50Z ##[endgroup]
+2026-06-10T15:18:50Z ##[group]Install dependencies
+2026-06-10T15:18:50Z + ./setup.sh
+2026-06-10T15:18:57Z Setup complete.
+2026-06-10T15:18:57Z ##[endgroup]
+2026-06-10T15:18:58Z ##[group]Unit tests
+2026-06-10T15:18:58Z + pytest -q
+2026-06-10T15:19:03Z 24 passed in 4.1s
+2026-06-10T15:19:03Z ##[endgroup]
+2026-06-10T15:19:04Z ##[group]Integration (docker)
+2026-06-10T15:19:04Z + docker compose -f docker-compose.ci.yml pull
+2026-06-10T15:19:05Z postgres Pulling
+2026-06-10T15:19:06Z redis Pulling
+2026-06-10T15:19:08Z 6e174226ea69 Already exists
+2026-06-10T15:19:10Z 2d35ebdb57d9 Pulling fs layer
+2026-06-10T15:19:15Z 2d35ebdb57d9 Retrying in 5 seconds
+2026-06-10T15:19:20Z 2d35ebdb57d9 Retrying in 4 seconds
+2026-06-10T15:19:25Z 2d35ebdb57d9 Retrying in 3 seconds
+2026-06-10T15:19:30Z 2d35ebdb57d9 Retrying in 2 seconds
+2026-06-10T15:19:35Z 2d35ebdb57d9 Retrying in 1 second
+2026-06-10T15:19:40Z ##[error]Error response from daemon: Get "https://registry-1.docker.io/v2/library/postgres/manifests/sha256:deadbeef": read tcp 10.1.0.14:54321->140.82.121.4:443: read: connection reset by peer (ECONNRESET)
+2026-06-10T15:19:40Z ##[error]Integration stage failed: docker pull interrupted by registry connectivity
+2026-06-10T15:19:40Z ##[error]Process completed with exit code 1.

@@ -1,0 +1,26 @@
+2026-06-10T13:55:05Z ##[group]Run actions/checkout@v4
+2026-06-10T13:55:05Z Syncing repository: al-kutub/a-forgeb
+2026-06-10T13:55:06Z ##[endgroup]
+2026-06-10T13:55:06Z ##[group]Run pnpm/action-setup@v4
+2026-06-10T13:55:06Z Installing pnpm v9.12.0
+2026-06-10T13:55:07Z ##[endgroup]
+2026-06-10T13:55:07Z ##[group]Install dependencies
+2026-06-10T13:55:07Z + pnpm install --frozen-lockfile
+2026-06-10T13:55:08Z Lockfile is up to date, resolution step is skipped
+2026-06-10T13:55:09Z Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-06-10T13:55:11Z Progress: resolved 42, reused 38, downloaded 2, added 0
+2026-06-10T13:55:14Z Progress: resolved 128, reused 120, downloaded 4, added 0
+2026-06-10T13:55:18Z GET https://npm.pkg.github.com/download/@forgeb/private-sdk/2.4.1/abc123 - 200
+2026-06-10T13:55:22Z Packages: +312
+2026-06-10T13:55:28Z Done in 21.4s
+2026-06-10T13:55:28Z ##[endgroup]
+2026-06-10T13:55:29Z ##[group]Typecheck
+2026-06-10T13:55:29Z + pnpm -r typecheck
+2026-06-10T13:55:35Z Scope: 2 of 3 workspace projects
+2026-06-10T13:55:36Z packages/shared typecheck: Done
+2026-06-10T13:55:36Z ##[endgroup]
+2026-06-10T13:55:37Z ##[group]Test
+2026-06-10T13:55:37Z + pytest -q
+2026-06-10T13:55:42Z ........................                                                 [100%]
+2026-06-10T13:55:42Z 24 passed in 4.8s
+2026-06-10T13:55:42Z ##[endgroup]

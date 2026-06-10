@@ -1,0 +1,25 @@
+2026-06-10T15:12:03Z ##[group]Run actions/checkout@v4
+2026-06-10T15:12:04Z Syncing repository: al-kutub/a-forgeb
+2026-06-10T15:12:05Z ##[endgroup]
+2026-06-10T15:12:05Z ##[group]Install dependencies
+2026-06-10T15:12:05Z + ./setup.sh
+2026-06-10T15:12:12Z Setup complete.
+2026-06-10T15:12:12Z ##[endgroup]
+2026-06-10T15:12:13Z ##[group]Unit tests
+2026-06-10T15:12:13Z + pytest -q
+2026-06-10T15:12:18Z 24 passed in 4.0s
+2026-06-10T15:12:18Z ##[endgroup]
+2026-06-10T15:12:19Z ##[group]Integration (docker)
+2026-06-10T15:12:19Z + docker compose -f docker-compose.ci.yml pull
+2026-06-10T15:12:20Z postgres Pulling
+2026-06-10T15:12:21Z redis Pulling
+2026-06-10T15:12:24Z 2d35ebdb57d9 Pull complete
+2026-06-10T15:12:26Z postgres Pulled
+2026-06-10T15:12:27Z redis Pulled
+2026-06-10T15:12:28Z + docker compose -f docker-compose.ci.yml up -d --wait
+2026-06-10T15:12:35Z Container forgeb-ci-postgres Healthy
+2026-06-10T15:12:35Z Container forgeb-ci-redis Healthy
+2026-06-10T15:12:36Z + pytest -q tests/integration
+2026-06-10T15:12:41Z .....                                                                    [100%]
+2026-06-10T15:12:41Z 5 passed in 4.6s
+2026-06-10T15:12:41Z ##[endgroup]

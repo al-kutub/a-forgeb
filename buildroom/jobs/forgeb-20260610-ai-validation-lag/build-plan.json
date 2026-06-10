@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "job_id": "forgeb-20260610-ai-validation-lag",
+  "created_at": "2026-06-10T16:20:00Z",
+  "steps": [
+    {
+      "id": "scaffold-monorepo",
+      "description": "Bootstrap pnpm workspace and shared Flake Radar types",
+      "files": [
+        "pnpm-workspace.yaml",
+        "package.json",
+        "packages/shared/package.json",
+        "packages/shared/tsconfig.json",
+        "packages/shared/types/flake-radar.ts"
+      ],
+      "commands": ["pnpm -r typecheck"]
+    }
+  ]
+}

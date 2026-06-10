@@ -1,0 +1,16 @@
+{
+  "name": "@forgeb/shared",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./types/ci-triage": "./types/ci-triage.ts",
+    "./fixtures/ci-triage": "./fixtures/ci-triage/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

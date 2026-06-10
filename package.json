@@ -1,0 +1,12 @@
+{
+  "name": "a-forgeb",
+  "private": true,
+  "version": "2.0.0",
+  "description": "ForgeB product monorepo (Python API + Failure Lens TypeScript packages)",
+  "scripts": {
+    "typecheck": "pnpm -r typecheck"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

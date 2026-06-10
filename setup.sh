@@ -52,9 +52,28 @@ else
   RUN_PREFIX=""
 fi
 
+# --- Node / pnpm (Flake Radar TypeScript slice) ---
+if command -v node >/dev/null 2>&1; then
+  if command -v pnpm >/dev/null 2>&1; then
+    echo "Installing Flake Radar TypeScript dependencies..."
+    if [ -f pnpm-lock.yaml ]; then
+      CI=true pnpm install --frozen-lockfile
+    else
+      CI=true pnpm install
+    fi
+  else
+    echo "WARN: pnpm not found; skipping Flake Radar TypeScript dependencies." >&2
+  fi
+else
+  echo "WARN: node not found; skipping Flake Radar TypeScript dependencies." >&2
+fi
+
 echo
 echo "Setup complete. To run the API:"
 echo "  ${RUN_PREFIX}uvicorn app.main:app --reload"
 echo
 echo "To run tests:"
 echo "  ${RUN_PREFIX}pytest"
+echo
+echo "To typecheck Flake Radar packages:"
+echo "  pnpm -r typecheck"

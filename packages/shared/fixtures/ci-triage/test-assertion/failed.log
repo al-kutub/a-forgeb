@@ -1,0 +1,28 @@
+2026-06-10T15:01:34Z ##[group]Run actions/checkout@v4
+2026-06-10T15:01:35Z Syncing repository: al-kutub/a-forgeb
+2026-06-10T15:01:36Z ##[endgroup]
+2026-06-10T15:01:36Z ##[group]Install dependencies
+2026-06-10T15:01:36Z + ./setup.sh
+2026-06-10T15:01:38Z Using Python 3.12.3
+2026-06-10T15:01:45Z Setup complete.
+2026-06-10T15:01:45Z ##[endgroup]
+2026-06-10T15:01:46Z ##[group]Lint
+2026-06-10T15:01:46Z + ruff check app tests
+2026-06-10T15:01:47Z All checks passed!
+2026-06-10T15:01:47Z ##[endgroup]
+2026-06-10T15:01:48Z ##[group]Test
+2026-06-10T15:01:48Z + pytest -q --maxfail=1
+2026-06-10T15:01:52Z ...........F
+2026-06-10T15:01:52Z =================================== FAILURES ===================================
+2026-06-10T15:01:52Z ______________________ test_rejects_svg_disguised_as_png _______________________
+2026-06-10T15:01:52Z tests/test_avatars.py:88: in test_rejects_svg_disguised_as_png
+2026-06-10T15:01:52Z     assert response.status_code == 415
+2026-06-10T15:01:52Z E   assert 200 == 415
+2026-06-10T15:01:52Z E    +  where 200 = <Response [200 OK]>.status_code
+2026-06-10T15:01:52Z ----------------------------- Captured stdout call -----------------------------
+2026-06-10T15:01:52Z INFO:app.avatars:accepted image/png upload (1024 bytes)
+2026-06-10T15:01:52Z =========================== short test summary info ============================
+2026-06-10T15:01:52Z FAILED tests/test_avatars.py::test_rejects_svg_disguised_as_png - assert 200 == 415
+2026-06-10T15:01:52Z !!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+2026-06-10T15:01:52Z ##[error]1 failed, 11 passed in 3.9s
+2026-06-10T15:01:52Z ##[error]Process completed with exit code 1.
