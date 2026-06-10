@@ -100,7 +100,7 @@ export const CI_TRIAGE_FIXTURES: readonly CITriageFixture[] = [
     failedLogPath: fixturePath("infra-flake", "failed.log"),
     greenLogPath: fixturePath("infra-flake", "last-green.log"),
   },
-] as const;
+] as const satisfies readonly CITriageFixture[];
 
 export function getFixtureById(id: string): CITriageFixture | undefined {
   return CI_TRIAGE_FIXTURES.find((fixture) => fixture.id === id);

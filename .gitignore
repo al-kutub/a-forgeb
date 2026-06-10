@@ -7,3 +7,5 @@ data/
 users.db
 .DS_Store
 node_modules/
+.pnpm-store/
+node_modules/

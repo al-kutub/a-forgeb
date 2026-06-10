@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "job_id": "forgeb-20260610-ci-failure-triage-gap",
+  "title": "Failure Lens - PR-scoped CI triage with stage-aware log distillation",
+  "created_at": "2026-06-10T16:16:10Z",
+  "allowed_paths": [
+    "server/routes/failure-lens/",
+    "server/services/ci-triage/",
+    "ui/components/failure-lens/",
+    "packages/shared/types/ci-triage.ts",
+    "buildroom/jobs/forgeb-20260610-ci-failure-triage-gap/"
+  ],
+  "planned_files": [
+    "server/routes/failure-lens/index.ts",
+    "server/services/ci-triage/log-distiller.ts",
+    "server/services/ci-triage/green-baseline-diff.ts",
+    "server/services/ci-triage/stage-parser.ts",
+    "server/services/ci-triage/root-cause-classifier.ts",
+    "ui/components/failure-lens/FailureSummaryCard.tsx",
+    "ui/components/failure-lens/StageErrorTimeline.tsx",
+    "packages/shared/types/ci-triage.ts"
+  ],
+  "non_goals": [
+    "Replacing Forge CI runners or pipeline execution infrastructure",
+    "Auto-merging or auto-fixing code without explicit engineer confirmation in v1",
+    "Full log archival or long-term observability platform (Datadog replacement)",
+    "Non-Forge SCM providers beyond GitHub/GitLab/Jenkins in v1"
+  ],
+  "verification_commands": [
+    "hermes buildroom validate --job forgeb-20260610-ci-failure-triage-gap",
+    "pnpm -r typecheck",
+    "pnpm test --filter ci-triage"
+  ],
+  "acceptance_checks": [
+    "Failed run distills log volume by >=90% while retaining stage-attributed error lines",
+    "Green-baseline diff highlights only lines absent or changed vs last successful run on same branch",
+    "PR attribution links failure stage to files changed in the triggering PR",
+    "Root-cause summary renders in PR check annotation with confidence band and suggested next action",
+    "False-positive rate on seeded fixtures stays below 15% for known failure classes"
+  ],
+  "protected_surfaces": [
+    "config.yaml",
+    ".env",
+    "cron/jobs.json",
+    "buildroom/schemas/"
+  ],
+  "risk_band": "medium",
+  "summary": "Give Forge teams a provider-agnostic failure intelligence layer that diffs failed pipeline runs against the last green baseline, distills 10K-170K log lines down to stage-relevant errors, attributes failures to PR changes, and surfaces actionable root-cause narratives in PR checks and IDE - collapsing mean time to diagnosis from 30-60 minutes to under five minutes."
+}

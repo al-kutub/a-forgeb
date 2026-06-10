@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "job_id": "forgeb-20260610-ci-failure-triage-gap",
+  "mode": "paperclip",
+  "company_id": "77f24110-0010-4c45-b8a7-00e3ab8c0afc",
+  "paperclip_goal_id": "f0064504-597a-4581-9b56-1a14d86d35f8",
+  "created_at": "2026-06-10T16:17:18Z",
+  "metadata": {
+    "source": "buildroom",
+    "owner": "ceo"
+  }
+}

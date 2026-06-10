@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-06-10T15:27:25Z",
+  "job_id": "forgeb-20260610-ci-failure-triage-gap",
+  "company_id": "77f24110-0010-4c45-b8a7-00e3ab8c0afc",
+  "company_name": "Forge",
+  "scope": "Technical software company building developer-facing products \u2014 ship small, well-built software fast with strong CI/CD and build pipeline tooling.",
+  "summary": "CI failures are detected quickly but understood slowly: engineers wade through 10K\u2013170K log lines with no pipeline-native root-cause narrative. Log aggregators search text; they do not explain which stage, dependency, or code change broke the build \u2014 driving burnout and context-switch tax.",
+  "signals": [
+    {
+      "id": "pain_point-failure-comprehension",
+      "type": "pain_point",
+      "description": "Mean time to diagnosis remains 30\u201360+ minutes per failed pipeline because relevant errors are buried in unstructured, cross-stage log noise; developers rely on personal grep heuristics.",
+      "confidence": 0.86,
+      "evidence": [
+        "Harness 2026 State of DevOps Modernization: 69% of engineers cite slow/unreliable CI/CD as burnout contributor",
+        "DEV Community / industry framing: failure detection is fast; comprehension (what failed, which change, what to do) is the bottleneck",
+        "Medium Feb 2026 CI triage article: 10K\u2013170K log lines per failure; log tools collect but lack pipeline-structure-aware diagnosis",
+        "Level Up Coding May 2026: stage-aware log filtering cuts noise ~98.5% before analysis \u2014 implies massive default noise ratio",
+        "Datadog CI Visibility: compares failed vs prior successful runs to surface relevant log lines; uses LLM on last 100 relevant lines",
+        "arxiv LogSage (2025): CI/CD log heterogeneity and lack of actionable remediation guidance remain major industrial barriers"
+      ],
+      "opportunity_size": "Large \u2014 every team on GitHub Actions/GitLab/Jenkins hits this; wedge is PR-scoped failure intelligence (stage + diff + fix suggestion) consumable in IDE or PR checks"
+    },
+    {
+      "id": "emerging_capability-log-diff-llm-triage",
+      "type": "emerging_opportunity",
+      "description": "Emerging pattern: log-diff against last green run + stage parsing + LLM/heuristic classification collapses triage from hours to seconds \u2014 still fragmented across vendors and not IDE-native.",
+      "confidence": 0.84,
+      "evidence": [
+        "Datadog CI jobs failure analysis: relevancy via diff vs previous successful job runs",
+        "LogSage industrial validation: LLM framework for CI/CD failure detection and remediation guidance",
+        "Semaphore for AI Agents (2026): structured JSON CLI outputs for agent-driven pipeline diagnostics",
+        "Industry posts claim MTTD drop from 30\u201360 min to <5 sec with automated classification (pattern-based + AI)"
+      ],
+      "opportunity_size": "Medium-large \u2014 incumbents adding features; opportunity for provider-agnostic layer tied to PR workflow"
+    }
+  ],
+  "watch_items": [
+    "Stage-aware log distillation accuracy",
+    "PR-to-failure attribution quality",
+    "False-positive rate of automated root-cause suggestions"
+  ]
+}

@@ -157,9 +157,30 @@ source .venv/bin/activate   # omit if setup fell back to user-site install
 pytest
 ```
 
+## Failure Lens (CI triage)
+
+TypeScript packages for the Buildroom job `forgeb-20260610-ci-failure-triage-gap` live under `packages/shared/`.
+
+| Path | Purpose |
+|------|---------|
+| `packages/shared/types/ci-triage.ts` | Shared contracts: `Stage`, `RunRef`, `DistilledLog`, `RootCauseSummary`, `ConfidenceBand` |
+| `packages/shared/fixtures/ci-triage/` | Seeded failed/green log pairs (dependency timeout, test assertion, infra flake) |
+| `buildroom/jobs/forgeb-20260610-ci-failure-triage-gap/` | Job metadata mirrored from Buildroom |
+
+```bash
+pnpm install
+pnpm -r typecheck
+```
+
 ## Project layout
 
 ```
+packages/
+  shared/
+    types/ci-triage.ts
+    fixtures/ci-triage/
+buildroom/
+  jobs/forgeb-20260610-ci-failure-triage-gap/
 app/
   main.py           # FastAPI app, health/quote routes, static UI mount
   auth.py           # JWT helpers and password hashing

@@ -1,9 +1,11 @@
 {
-  "name": "@forgeb/shared",
+  "name": "flake-radar",
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "description": "Shared ForgeB types — Flake Radar domain + CI triage fixtures",
   "exports": {
+    "./types/flake-radar": "./types/flake-radar.ts",
     "./types/ci-triage": "./types/ci-triage.ts",
     "./fixtures/ci-triage": "./fixtures/ci-triage/index.ts"
   },

@@ -2,7 +2,7 @@
   "name": "a-forgeb",
   "private": true,
   "version": "2.0.0",
-  "description": "ForgeB product monorepo (Python API + Failure Lens TypeScript packages)",
+  "description": "ForgeB product monorepo — Python API + TypeScript packages (Flake Radar, Failure Lens)",
   "scripts": {
     "typecheck": "pnpm -r typecheck"
   },

@@ -52,20 +52,20 @@ else
   RUN_PREFIX=""
 fi
 
-# --- Node / pnpm (Flake Radar TypeScript slice) ---
+# --- Node / pnpm (TypeScript workspace: Flake Radar + Failure Lens) ---
 if command -v node >/dev/null 2>&1; then
   if command -v pnpm >/dev/null 2>&1; then
-    echo "Installing Flake Radar TypeScript dependencies..."
+    echo "Installing TypeScript workspace dependencies..."
     if [ -f pnpm-lock.yaml ]; then
       CI=true pnpm install --frozen-lockfile
     else
       CI=true pnpm install
     fi
   else
-    echo "WARN: pnpm not found; skipping Flake Radar TypeScript dependencies." >&2
+    echo "WARN: pnpm not found; skipping TypeScript workspace dependencies." >&2
   fi
 else
-  echo "WARN: node not found; skipping Flake Radar TypeScript dependencies." >&2
+  echo "WARN: node not found; skipping TypeScript workspace dependencies." >&2
 fi
 
 echo
@@ -75,5 +75,5 @@ echo
 echo "To run tests:"
 echo "  ${RUN_PREFIX}pytest"
 echo
-echo "To typecheck Flake Radar packages:"
+echo "To typecheck TypeScript packages:"
 echo "  pnpm -r typecheck"
