@@ -7,6 +7,7 @@
   "include": [
     "fixtures/**/*.ts",
     "routes/flake-radar/**/*.ts",
+    "routes/failure-lens/**/*.ts",
     "services/test-intelligence/**/*.ts",
     "services/ci-triage/**/*.ts"
   ],

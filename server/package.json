@@ -6,8 +6,8 @@
   "description": "Flake Radar test-intelligence services and API routes",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "node --import tsx --test services/test-intelligence/**/*.test.ts routes/flake-radar/**/*.test.ts services/ci-triage/**/*.test.ts",
-    "test:ci-triage": "node --import tsx --test services/ci-triage/**/*.test.ts"
+    "test": "node --import tsx --test services/test-intelligence/**/*.test.ts routes/flake-radar/**/*.test.ts routes/failure-lens/**/*.test.ts services/ci-triage/**/*.test.ts",
+    "test:ci-triage": "node --import tsx --test services/ci-triage/**/*.test.ts routes/failure-lens/**/*.test.ts"
   },
   "dependencies": {
     "flake-radar": "workspace:*"
