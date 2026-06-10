@@ -172,15 +172,38 @@ pnpm install
 pnpm -r typecheck
 ```
 
+## Flake Radar (test intelligence)
+
+Operator dashboard components for the Buildroom job `forgeb-20260610-ai-validation-lag`.
+
+| Path | Purpose |
+|------|---------|
+| `packages/shared/types/flake-radar.ts` | Shared contracts: `FlakeScore`, `QuarantineRecord`, `PipelineHealthMetrics`, `FlakeRadarSnapshot` |
+| `ui/components/flake-radar/FlakeHeatmap.tsx` | Top flaky tests heatmap per repository |
+| `ui/components/flake-radar/QuarantineQueue.tsx` | Quarantined tests with audit trail |
+| `ui/components/flake-radar/PipelineMetrics.tsx` | MTTR trend, rerun multiplier, queue-wait ratio |
+| `ui/components/flake-radar/FlakeRadarDashboard.tsx` | Dashboard wired to `/flake-radar/repos/:repoId/*` API routes |
+
+Import from `@a-forgeb/ui/flake-radar` after `pnpm install`. The dashboard expects backend routes from `server/routes/flake-radar/`.
+
+```bash
+pnpm install
+pnpm -r typecheck
+```
+
 ## Project layout
 
 ```
 packages/
   shared/
     types/ci-triage.ts
+    types/flake-radar.ts
     fixtures/ci-triage/
+ui/
+  components/flake-radar/
 buildroom/
   jobs/forgeb-20260610-ci-failure-triage-gap/
+  jobs/forgeb-20260610-ai-validation-lag/
 app/
   main.py           # FastAPI app, health/quote routes, static UI mount
   auth.py           # JWT helpers and password hashing
