@@ -28,6 +28,35 @@
         "server/tsconfig.json"
       ],
       "commands": ["pnpm -r typecheck", "pnpm test --filter flake-radar"]
+    },
+    {
+      "id": "ui-dashboard",
+      "description": "Flake Radar operator dashboard with pipeline metrics and quarantine queue",
+      "files": [
+        "ui/components/flake-radar/FlakeRadarDashboard.tsx",
+        "ui/components/flake-radar/FlakeHeatmap.tsx",
+        "ui/components/flake-radar/PipelineMetrics.tsx",
+        "ui/components/flake-radar/QuarantineQueue.tsx",
+        "ui/components/flake-radar/useFlakeRadar.ts",
+        "ui/components/flake-radar/api.ts",
+        "ui/package.json"
+      ],
+      "commands": ["pnpm -r typecheck"]
+    },
+    {
+      "id": "integration-tests",
+      "description": "Seed synthetic run history and prove acceptance checks via integration tests",
+      "files": [
+        "server/routes/flake-radar/acceptance.integration.test.ts",
+        "server/routes/flake-radar/index.test.ts",
+        "buildroom/jobs/forgeb-20260610-ai-validation-lag/build-plan.json",
+        "buildroom/jobs/forgeb-20260610-ai-validation-lag/verification.json"
+      ],
+      "commands": [
+        "pnpm test --filter flake-radar",
+        "hermes buildroom validate --job forgeb-20260610-ai-validation-lag",
+        "./setup.sh"
+      ]
     }
   ]
 }

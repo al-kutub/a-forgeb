@@ -4,7 +4,8 @@
   "version": "2.0.0",
   "description": "ForgeB product monorepo — Python API + TypeScript packages (Flake Radar, Failure Lens)",
   "scripts": {
-    "typecheck": "pnpm -r typecheck"
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm --filter flake-radar test"
   },
   "engines": {
     "node": ">=18"
