@@ -1,0 +1,301 @@
+/* Failure Lens — CI triage summary and stage timeline */
+
+.failure-lens {
+  --failure-lens-accent: #dc2626;
+  --failure-lens-border: #e2e8f0;
+  --failure-lens-muted: #64748b;
+  --failure-lens-high: #15803d;
+  --failure-lens-medium: #ca8a04;
+  --failure-lens-low: #ea580c;
+  --failure-lens-unknown: #64748b;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #0f172a;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.failure-summary-card {
+  border: 1px solid var(--failure-lens-border);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  background: #fff;
+  border-left: 4px solid var(--failure-lens-accent);
+}
+
+.failure-summary-card--confidence-high {
+  border-left-color: var(--failure-lens-high);
+}
+
+.failure-summary-card--confidence-medium {
+  border-left-color: var(--failure-lens-medium);
+}
+
+.failure-summary-card--confidence-low {
+  border-left-color: var(--failure-lens-low);
+}
+
+.failure-summary-card--confidence-unknown {
+  border-left-color: var(--failure-lens-unknown);
+}
+
+.failure-summary-card__header {
+  margin-bottom: 0.75rem;
+}
+
+.failure-summary-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.failure-summary-card__confidence,
+.failure-summary-card__class {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+}
+
+.failure-summary-card__confidence {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.failure-summary-card__confidence[data-confidence="high"] {
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.failure-summary-card__confidence[data-confidence="medium"] {
+  background: #fefce8;
+  color: #854d0e;
+}
+
+.failure-summary-card__confidence[data-confidence="low"] {
+  background: #fff7ed;
+  color: #9a3412;
+}
+
+.failure-summary-card__confidence[data-confidence="unknown"] {
+  background: #f1f5f9;
+  color: var(--failure-lens-unknown);
+}
+
+.failure-summary-card__class {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.failure-summary-card__headline {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.failure-summary-card__run-meta {
+  margin: 0.35rem 0 0;
+  font-size: 0.875rem;
+  color: var(--failure-lens-muted);
+}
+
+.failure-summary-card__narrative {
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+
+.failure-summary-card__action {
+  background: #f8fafc;
+  border: 1px solid var(--failure-lens-border);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.failure-summary-card__action-label,
+.failure-summary-card__actions-label,
+.failure-summary-card__files-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--failure-lens-muted);
+}
+
+.failure-summary-card__action-text {
+  margin: 0;
+  font-weight: 500;
+}
+
+.failure-summary-card__actions-list,
+.failure-summary-card__files-list {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.failure-summary-card__files {
+  margin-top: 0.75rem;
+}
+
+.failure-summary-card__baseline {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--failure-lens-border);
+  font-size: 0.875rem;
+  color: var(--failure-lens-muted);
+}
+
+.stage-error-timeline {
+  border: 1px solid var(--failure-lens-border);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  background: #fff;
+}
+
+.stage-error-timeline__header {
+  margin-bottom: 1rem;
+}
+
+.stage-error-timeline__title {
+  margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+}
+
+.stage-error-timeline__meta {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--failure-lens-muted);
+}
+
+.stage-error-timeline__empty,
+.stage-error-timeline__no-errors {
+  margin: 0;
+  color: var(--failure-lens-muted);
+  font-size: 0.9rem;
+}
+
+.stage-error-timeline__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.stage-error-timeline__stage {
+  border: 1px solid var(--failure-lens-border);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+}
+
+.stage-error-timeline__stage--failure,
+.stage-error-timeline__stage--primary {
+  border-color: #fecaca;
+  background: #fffbfb;
+}
+
+.stage-error-timeline__stage--primary {
+  box-shadow: 0 0 0 1px #fca5a5;
+}
+
+.stage-error-timeline__stage-header {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.stage-error-timeline__stage-order {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  background: #f1f5f9;
+  font-size: 0.8rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.stage-error-timeline__stage-name {
+  margin: 0;
+  font-size: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stage-error-timeline__primary-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #991b1b;
+  background: #fee2e2;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+}
+
+.stage-error-timeline__stage-status {
+  margin: 0.25rem 0 0;
+  font-size: 0.8rem;
+  color: var(--failure-lens-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+}
+
+.stage-error-timeline__status--failure {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.stage-error-timeline__status--success {
+  color: #15803d;
+}
+
+.stage-error-timeline__errors {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.stage-error-timeline__error {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+  background: #f8fafc;
+}
+
+.stage-error-timeline__error--error {
+  background: #fef2f2;
+}
+
+.stage-error-timeline__error--warn {
+  background: #fffbeb;
+}
+
+.stage-error-timeline__line-number {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: var(--failure-lens-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.stage-error-timeline__message {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8rem;
+  word-break: break-word;
+}

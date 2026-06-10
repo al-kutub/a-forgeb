@@ -165,7 +165,12 @@ TypeScript packages for the Buildroom job `forgeb-20260610-ci-failure-triage-gap
 |------|---------|
 | `packages/shared/types/ci-triage.ts` | Shared contracts: `Stage`, `RunRef`, `DistilledLog`, `RootCauseSummary`, `ConfidenceBand` |
 | `packages/shared/fixtures/ci-triage/` | Seeded failed/green log pairs (dependency timeout, test assertion, infra flake) |
+| `server/routes/failure-lens/` | Triage API handlers over log distiller + root-cause classifier |
+| `ui/components/failure-lens/FailureSummaryCard.tsx` | Root-cause summary card with confidence band and suggested actions |
+| `ui/components/failure-lens/StageErrorTimeline.tsx` | Stage-attributed error timeline from distilled logs |
 | `buildroom/jobs/forgeb-20260610-ci-failure-triage-gap/` | Job metadata mirrored from Buildroom |
+
+Import from `@a-forgeb/ui/failure-lens` after `pnpm install`. Components accept `RootCauseSummary` and `DistilledLog` from the triage API contract; `buildPrCheckAnnotationPayload` maps triage output to PR check annotation fields.
 
 ```bash
 pnpm install
@@ -201,7 +206,10 @@ packages/
     fixtures/ci-triage/
 ui/
   components/flake-radar/
-buildroom/
+  components/failure-lens/
+server/
+  routes/failure-lens/
+  services/ci-triage/
   jobs/forgeb-20260610-ci-failure-triage-gap/
   jobs/forgeb-20260610-ai-validation-lag/
 app/

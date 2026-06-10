@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "ForgeB operator UI components — Flake Radar dashboard",
+  "description": "ForgeB operator UI components — Flake Radar dashboard + Failure Lens triage",
   "exports": {
-    "./flake-radar": "./components/flake-radar/index.ts"
+    "./flake-radar": "./components/flake-radar/index.ts",
+    "./failure-lens": "./components/failure-lens/index.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
